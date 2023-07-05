@@ -1,7 +1,11 @@
 const express = require("express");
 const db = require('./database/database')
-const port = 8000;
-const Tasks = require('./models/tasks.models')
+
+const Tasks = require('./models/tasks.models');
+require('dotenv').config();
+const PORT = process.env.PORT ?? 8000;
+
+Tasks;
 
 db.authenticate()
     .then(() => { 
@@ -82,9 +86,11 @@ app.delete('/tasks/:id', async(req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Bienvenido a mi servidor');
+    res.send('Welcome to my server');
 });
 
-app.listen(port, () => {
-    console.log("Server running in port " + port);
+app.listen(PORT, () => {
+    console.log("Server running in port " + PORT);
 });
+
+console.log(process.env);
